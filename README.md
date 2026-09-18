@@ -5,20 +5,26 @@ Bill Yost's landing page. One hand-written HTML file, self-hosted IBM Plex, no f
 ## Layout
 
 - `public/index.html` is the whole page: inline CSS, inline SVG glyphs.
-- `public/theme.js` sets the stored theme before first paint and wires the toggle. It is external so the CSP can stay `script-src 'self'` with no hashes to maintain.
-- `public/_headers` carries the CSP, HSTS and cache rules.
-- `scripts/og-image.mjs` renders `public/og.png` with resvg.
+- `public/theme.js` sets the stored theme before first paint, wires the two theme buttons (the header one cycles dark, light, rainbow; the footer one jumps to rainbow and back), announces the change to screen readers, and pauses animations while the tab is hidden. It is external so the CSP can stay `script-src 'self'`.
+- `public/_headers` carries the CSP, HSTS and cache rules. The CSP line is rewritten on every build (see below); do not hand-edit it.
+- `src/worker.js` runs in front of the assets and 301s plain http and www.billyost.com to https://billyost.com.
+- `scripts/og-image.mjs` renders `public/og.png` with resvg in the site's own Plex (decompressed from the woff2 files). The tagline and exhibit count are read from `index.html`, so the card cannot drift from the page.
 
 ## Commands
 
+    npm run check     # exhibit count and letters, one shared description, no em dashes, https links
     npm run og        # re-render the share card
-    npm run dev       # wrangler dev
-    npm run deploy    # og + wrangler deploy
+    npm run csp       # hash every inline <style> into the CSP in _headers
+    npm run build     # check + og + csp
+    npm run dev       # build + wrangler dev
+    npm run deploy    # build + wrangler deploy
+
+After changing the share card, paste https://billyost.com into linkedin.com/post-inspector so LinkedIn drops its cached preview.
 
 ## Adding an exhibit
 
-Copy a `<li class="row">` block in `public/index.html`, bump the exhibit letter, and update the "N on file" count in the section header.
+Copy a `<li class="row">` block in `public/index.html`, bump the exhibit letter, and update the "N on file" count in the section header. `npm run check` fails the deploy if the count or letters are off. The first exhibit runs full width on desktop; the rest sit two-up, so an even number of the others looks best.
 
 ## House rules
 
-Dark mode is the primary target. Every color token lives in all three theme blocks. Text wears ink tokens only. No em dashes.
+Dark mode is the primary target. Every color token lives in all four theme blocks (dark, OS light, forced light, rainbow). Text wears ink tokens only. Control edges clear 3:1 against the page. No em dashes. The employer is never named.

@@ -2,11 +2,14 @@
   "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
   "name": "billyost-com",
   "compatibility_date": "2026-09-01",
+  // A few lines of Worker in front of the assets: http and www 301 to https://billyost.com.
+  "main": "src/worker.js",
   "assets": {
     "directory": "./public",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": true
   },
-  // Custom domains need billyost.com to be a zone on this Cloudflare account first.
   "routes": [
     { "pattern": "billyost.com", "custom_domain": true },
     { "pattern": "www.billyost.com", "custom_domain": true }

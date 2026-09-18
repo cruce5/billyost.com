@@ -8,9 +8,12 @@
 <script src="/theme.js"></script>
 <style>
 :root{color-scheme:dark;--plane:#0d0d0d;--ink:#ffffff;--ink-2:#c3c2b7;--ink-3:#918f88;--rule:#383835;--focus:#5a9ff0}
-@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){color-scheme:light;--plane:#eeece7;--ink:#17160f;--ink-2:#38362f;--ink-3:#5f5c53;--rule:#d2cec3;--focus:#1f5fa8}}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]):not([data-theme="rainbow"]){color-scheme:light;--plane:#eeece7;--ink:#17160f;--ink-2:#38362f;--ink-3:#5f5c53;--rule:#d2cec3;--focus:#1f5fa8}}
 :root[data-theme="light"]{color-scheme:light;--plane:#eeece7;--ink:#17160f;--ink-2:#38362f;--ink-3:#5f5c53;--rule:#d2cec3;--focus:#1f5fa8}
+:root[data-theme="rainbow"]{color-scheme:light;--plane:#fff3fd;--ink:#2a0a4a;--ink-2:#3d1a63;--ink-3:#5b3a80;--rule:#e58fe0;--focus:#4a2bff}
 body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--plane);color:var(--ink-2);font:400 17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+[data-theme="rainbow"] body{background:linear-gradient(115deg,#ff2d95,#ff8a00,#ffe600,#35e06f,#19d3ff,#4a6bff,#b14aff)}
+[data-theme="rainbow"] main{background:rgba(255,250,255,.94);border-radius:24px}
 main{max-width:520px;padding:24px}
 .label{font:500 12.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 h1{margin:10px 0 12px;font-size:44px;line-height:1.05;color:var(--ink)}
@@ -22,7 +25,7 @@ a{color:var(--ink);text-underline-offset:4px}
 <main>
   <div class="label">Error 404</div>
   <h1>Not on file.</h1>
-  <p>Probably user error. <a href="/">Return to the memo.</a></p>
+  <p>Probably user error. I have decided it was yours. <a href="/">Return to the memo.</a></p>
 </main>
 </body>
 </html>
