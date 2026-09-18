@@ -118,21 +118,27 @@ a{color:inherit}
   color:var(--ink-3);
 }
 
-/* Header. On phones the portrait sits beside the memo rows so the name and the first exhibit
-   make the first screen; from 700px up it moves beside the name. */
+/* Header. The To/From/Re/Cc rows are an easter egg in a closed <details>; the portrait sits
+   above the name on phones and beside it from 700px up. */
 header{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
 .stamp{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
 .stamp .label:first-child{color:var(--ink)}
-.memo{grid-column:1;grid-row:2;margin:0;padding:12px 0;display:grid;grid-template-columns:4.5em 1fr;gap:2px 12px;align-content:center}
+.routing{grid-column:1 / -1;grid-row:2;border-bottom:1px solid var(--rule)}
+.routing summary{display:flex;align-items:center;gap:.6em;min-height:44px;cursor:pointer;list-style:none;width:max-content}
+.routing summary::-webkit-details-marker{display:none}
+.routing summary::before{content:"\25B8";font-size:1.1em;transition:transform .15s ease}
+.routing[open] summary::before{transform:rotate(90deg)}
+.routing summary:hover{color:var(--ink-2)}
+.memo{margin:0;padding:0 0 14px;display:grid;grid-template-columns:4.5em 1fr;gap:2px 12px}
 .memo dt{font:500 12.5px/1.7 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .memo dd{margin:0;font:400 14.5px/1.6 var(--mono);color:var(--ink-2)}
 .hero{display:contents}
 .portrait{
-  grid-column:2;grid-row:2;align-self:center;
-  display:block;width:84px;height:84px;border-radius:50%;object-fit:cover;
+  grid-column:1;grid-row:3;margin-top:20px;
+  display:block;width:72px;height:72px;border-radius:50%;object-fit:cover;
   border:1px solid var(--rule-2);box-shadow:0 0 0 4px var(--surface);
 }
-.hero-text{grid-column:1 / -1;grid-row:3;border-top:1px solid var(--rule);padding-top:22px}
+.hero-text{grid-column:1 / -1;grid-row:4;padding-top:14px}
 
 h1{
   position:relative;margin:0;
@@ -146,11 +152,9 @@ h1{
 .lede + .lede{margin-top:10px;color:var(--ink-3);font-size:17px}
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
 
-/* Phones: the Cc row and some type size go, so the first exhibit makes the first screen. */
+/* Phones: some type size goes, so the first exhibit makes the first screen. */
 @media (max-width:699px){
-  .memo dt:nth-of-type(4),.memo dd:nth-of-type(4){display:none}
   .memo dd{font-size:13.5px}
-  .hero-text{padding-top:18px}
   .lede{margin-top:14px;font-size:17px}
   .lede + .lede{margin-top:8px;font-size:15.5px}
   .cta{margin-top:14px}
@@ -158,9 +162,8 @@ h1{
 }
 @media (min-width:700px){
   header{column-gap:40px}
-  .memo{grid-column:1 / -1;border-bottom:1px solid var(--rule);padding:14px 0}
   .portrait{grid-column:2;grid-row:3;width:220px;height:220px;box-shadow:0 0 0 7px var(--surface)}
-  .hero-text{grid-column:1;grid-row:3;align-self:center;border-top:0;padding-top:40px}
+  .hero-text{grid-column:1;grid-row:3;align-self:center;padding-top:40px}
   .portrait{margin-top:40px}
   .lede{margin-top:22px}
 }
@@ -325,12 +328,15 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
       <span class="label">Memorandum</span>
       <button class="toggle toggle-sm" type="button" data-theme-toggle><span data-theme-label>light mode</span></button>
     </div>
-    <dl class="memo">
-      <dt>To</dt><dd>Whoever clicked</dd>
-      <dt>From</dt><dd>Bill Yost</dd>
-      <dt>Re</dt><dd>Side projects, a podcast, and my mom's cookies</dd>
-      <dt>Cc</dt><dd>Distribution unlimited</dd>
-    </dl>
+    <details class="routing">
+      <summary class="label">Routing slip</summary>
+      <dl class="memo">
+        <dt>To</dt><dd>Whoever clicked</dd>
+        <dt>From</dt><dd>Bill Yost</dd>
+        <dt>Re</dt><dd>Side projects, a podcast, and my mom's cookies</dd>
+        <dt>Cc</dt><dd>Distribution unlimited</dd>
+      </dl>
+    </details>
     <div class="hero">
       <img class="portrait" src="/img/bill-yost.jpg" width="220" height="220" alt="Bill Yost, smiling, with long hair and a beard, in a green sweater">
       <div class="hero-text">
