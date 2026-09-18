@@ -38,7 +38,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   <image href="${portrait}" x="${PX - PR}" y="${PY - PR}" width="${PR * 2}" height="${PR * 2}" clip-path="url(#face)" preserveAspectRatio="xMidYMid slice"/>
   <circle cx="${PX}" cy="${PY}" r="${PR}" fill="none" stroke="#4d4d49" stroke-width="2"/>
   <text x="74" y="440" font-family="${SANS}" font-size="150" font-weight="800" fill="#ffffff" letter-spacing="-4">Bill Yost</text>
-  <text x="80" y="512" font-family="${SANS}" font-size="29" fill="#c3c2b7">Making employee data make sense. Cookie CEO.</text>
+  <text x="80" y="512" font-family="${SANS}" font-size="29" fill="#c3c2b7">A data nerd and a LinkedIn... something.</text>
   <text x="80" y="574" font-family="${MONO}" font-size="22" letter-spacing="4" fill="#5a9ff0">EXHIBITS ENCLOSED</text>
 </svg>`;
 
