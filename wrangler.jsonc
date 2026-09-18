@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
+  "name": "billyost-com",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  // Custom domains need billyost.com to be a zone on this Cloudflare account first.
+  "routes": [
+    { "pattern": "billyost.com", "custom_domain": true },
+    { "pattern": "www.billyost.com", "custom_domain": true }
+  ],
+  "observability": { "enabled": true }
+}

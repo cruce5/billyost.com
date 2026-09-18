@@ -1,0 +1,14 @@
+{
+  "name": "billyost-com",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "og": "node scripts/og-image.mjs",
+    "dev": "wrangler dev",
+    "deploy": "npm run og && wrangler deploy"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "wrangler": "^4.129.0"
+  }
+}

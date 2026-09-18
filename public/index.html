@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bill Yost</title>
+<meta name="description" content="People analytics by day. Data things nobody asked for by night. The Cape Index, yourpost.sucks, Dashboard Confessionals, and the rest of the exhibits.">
+<link rel="canonical" href="https://billyost.com/">
+<meta name="theme-color" content="#0d0d0d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billyost.com/">
+<meta property="og:title" content="Bill Yost">
+<meta property="og:description" content="People analytics by day. Data things nobody asked for by night. Exhibits enclosed.">
+<meta property="og:image" content="https://billyost.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bill Yost">
+<meta name="twitter:description" content="People analytics by day. Data things nobody asked for by night. Exhibits enclosed.">
+<meta name="twitter:image" content="https://billyost.com/og.png">
+
+<link rel="preload" href="/fonts/plex-cond-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script src="/theme.js"></script>
+
+<style>
+@font-face{font-family:"IBM Plex Sans Condensed";font-weight:600;font-style:normal;font-display:swap;src:url(/fonts/plex-cond-600-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans Condensed";font-weight:700;font-style:normal;font-display:swap;src:url(/fonts/plex-cond-700-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:400;font-style:normal;font-display:swap;src:url(/fonts/plex-sans-400-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;font-style:normal;font-display:swap;src:url(/fonts/plex-mono-400-latin.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;font-style:normal;font-display:swap;src:url(/fonts/plex-mono-500-latin.woff2) format("woff2")}
+
+/* Dark is the primary target. Every token is defined in all three blocks. */
+:root{
+  color-scheme:dark;
+  --plane:#0d0d0d;
+  --plane-bg:radial-gradient(ellipse 1400px 900px at 50% -8%, #181816 0%, #0d0d0d 60%);
+  --surface:#1a1a19;
+  --surface-2:#141413;
+  --ink:#ffffff;
+  --ink-2:#c3c2b7;
+  --ink-3:#918f88;
+  --hair:#2c2c2a;
+  --rule:#383835;
+  --rule-2:#4d4d49;
+  --accent:#e0a33a;
+  --focus:#5a9ff0;
+  --tile:#232321;
+  --display:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    color-scheme:light;
+    --plane:#eeece7;
+    --plane-bg:radial-gradient(ellipse 1400px 900px at 50% -8%, #f8f5ee 0%, #eeece7 60%);
+    --surface:#ffffff;
+    --surface-2:#f6f4ef;
+    --ink:#17160f;
+    --ink-2:#38362f;
+    --ink-3:#5f5c53;
+    --hair:#e0ddd4;
+    --rule:#d2cec3;
+    --rule-2:#b8b4a8;
+    --accent:#8a5610;
+    --focus:#1f5fa8;
+    --tile:#f1eee7;
+  }
+}
+:root[data-theme="light"]{
+  color-scheme:light;
+  --plane:#eeece7;
+  --plane-bg:radial-gradient(ellipse 1400px 900px at 50% -8%, #f8f5ee 0%, #eeece7 60%);
+  --surface:#ffffff;
+  --surface-2:#f6f4ef;
+  --ink:#17160f;
+  --ink-2:#38362f;
+  --ink-3:#5f5c53;
+  --hair:#e0ddd4;
+  --rule:#d2cec3;
+  --rule-2:#b8b4a8;
+  --accent:#8a5610;
+  --focus:#1f5fa8;
+  --tile:#f1eee7;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--plane);
+  color:var(--ink-2);
+  font:400 17px/1.55 var(--sans);
+}
+/* iOS Safari ignores background-attachment:fixed, so the gradient rides a fixed layer. */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:var(--plane-bg);
+}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
+a{color:inherit}
+
+.wrap{max-width:720px;margin:0 auto;padding:40px 20px 56px}
+@media (min-width:700px){.wrap{padding:72px 24px 88px}}
+
+.label{
+  font:500 12.5px/1.4 var(--mono);
+  letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);
+}
+
+/* Memo header */
+.stamp{display:flex;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.stamp .label:first-child{color:var(--ink)}
+.memo{margin:0;padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:4.5em 1fr;gap:4px 12px}
+.memo dt{font:500 12.5px/1.7 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.memo dd{margin:0;font:400 14.5px/1.5 var(--mono);color:var(--ink-2)}
+
+h1{
+  margin:36px 0 0;
+  font:700 clamp(56px,15vw,112px)/.92 var(--display);
+  letter-spacing:-.015em;color:var(--ink);
+  text-wrap:balance;
+}
+.lede{margin:22px 0 0;max-width:34em;font-size:19px;line-height:1.5;color:var(--ink-2)}
+.lede + .lede{margin-top:10px;color:var(--ink-3);font-size:17px}
+
+/* Sections */
+section{margin-top:56px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--rule-2)}
+.sec-head h2{margin:0;font:600 22px/1.2 var(--display);letter-spacing:.01em;color:var(--ink)}
+
+.rows{list-style:none;margin:0;padding:0}
+.row{border-bottom:1px solid var(--hair)}
+.row-link,.row-static{
+  display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:16px;align-items:start;
+  padding:20px 8px;margin:0 -8px;border-radius:8px;
+  text-decoration:none;
+}
+.row-link{transition:background-color .15s ease}
+.row-link:hover{background:var(--surface)}
+.row-link:hover .arrow{transform:translateX(3px);color:var(--ink)}
+.row-link:hover .name{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+
+.tile{
+  width:48px;height:48px;border-radius:10px;
+  display:grid;place-items:center;
+  background:var(--tile);border:1px solid var(--rule);color:var(--ink);
+}
+.tile svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tile img{width:100%;height:100%;object-fit:contain;border-radius:9px}
+
+.ex{display:block;font:500 12px/1.4 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
+.name{display:block;margin-top:2px;font:600 24px/1.15 var(--display);color:var(--ink)}
+.desc{display:block;margin-top:6px;color:var(--ink-2);font-size:16.5px;line-height:1.5}
+.dom{display:block;margin-top:8px;font:400 13.5px/1.4 var(--mono);color:var(--ink-3);overflow-wrap:anywhere}
+.arrow{align-self:center;font:400 20px/1 var(--mono);color:var(--ink-3);transition:transform .15s ease,color .15s ease}
+
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;
+  border:1px solid var(--rule-2);border-radius:999px;background:var(--surface);
+  font:500 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;transition:border-color .15s ease,background-color .15s ease;
+}
+.btn:hover{border-color:var(--ink);background:var(--tile)}
+.btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Compact rows for the appendix */
+.compact .row-link{padding:14px 8px;align-items:center}
+.compact .name{font-size:20px;margin-top:0}
+.compact .desc{margin-top:2px;font-size:15.5px;color:var(--ink-3)}
+
+footer{margin-top:64px;padding-top:18px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between}
+footer p{margin:0;font-size:15px;color:var(--ink-3);max-width:30em}
+footer a{color:var(--ink-2);text-underline-offset:3px}
+.toggle{
+  min-height:44px;padding:0 16px;border:1px solid var(--rule-2);border-radius:999px;
+  background:transparent;color:var(--ink-2);cursor:pointer;
+  font:500 12.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+}
+.toggle:hover{border-color:var(--ink);color:var(--ink)}
+
+@media (max-width:480px){
+  .row-link,.row-static{grid-template-columns:44px minmax(0,1fr);gap:14px}
+  .tile{width:44px;height:44px}
+  .arrow{display:none}
+  .name{font-size:22px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="stamp">
+      <span class="label">Memorandum</span>
+      <span class="label">Distribution: unlimited</span>
+    </div>
+    <dl class="memo">
+      <dt>To</dt><dd>Whoever clicked</dd>
+      <dt>From</dt><dd><span aria-hidden="true">🏴‍☠️ </span>Bill Yost</dd>
+      <dt>Re</dt><dd>What all of this is</dd>
+    </dl>
+    <h1>Bill Yost</h1>
+    <p class="lede">People analytics by day. At night I build data things nobody asked for, and then I buy them a domain.</p>
+    <p class="lede">This page exists so the domains have somewhere to meet. Exhibits follow.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="h-exhibits">
+      <div class="sec-head">
+        <h2 id="h-exhibits">Exhibits</h2>
+        <span class="label">5 on file</span>
+      </div>
+      <ul class="rows">
+
+        <li class="row">
+          <a class="row-link" href="https://capeindex.com/">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 20v-6"/><path d="M12 20V5"/><path d="M17 20v-9"/></svg>
+            </span>
+            <span>
+              <span class="ex">Exhibit A</span>
+              <span class="name">The Cape Index</span>
+              <span class="desc">Every Marvel and DC film since 2000, charted in one HTML file. The plan was to check 50 numbers.</span>
+              <span class="dom">capeindex.com</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="row">
+          <a class="row-link" href="https://yourpost.sucks/">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9.5 12l5 5"/><path d="M14.5 12l-5 5"/></svg>
+            </span>
+            <span>
+              <span class="ex">Exhibit B</span>
+              <span class="name">yourpost.sucks</span>
+              <span class="desc">Paste a LinkedIn post. Receive an unsympathetic report. Built by someone who posts on LinkedIn, who is aware of the irony.</span>
+              <span class="dom">yourpost.sucks</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="row">
+          <div class="row-static">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/><path d="M8.5 21h7"/></svg>
+            </span>
+            <span>
+              <span class="ex">Exhibit C</span>
+              <span class="name">Dashboard Confessionals</span>
+              <span class="desc">A podcast with Morgan Depenbusch. Two analytics people say the quiet parts at a normal volume.</span>
+              <span class="btns">
+                <a class="btn" href="https://open.spotify.com/show/0CCd9BQM9yvn663gDIqDk4">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 10c2.8-.8 5.6-.5 8 .8"/><path d="M8.6 13c2.2-.6 4.4-.3 6.3.7"/><path d="M9.3 15.8c1.6-.4 3.1-.2 4.4.5"/></svg>
+                  Spotify
+                </a>
+                <a class="btn" href="https://podcasts.apple.com/us/podcast/bill-and-morgans-dashboard-confessionals/id1823832188">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="2"/><path d="M12 14v6"/><path d="M8 13.5a5 5 0 1 1 8 0"/><path d="M5.6 16a8.5 8.5 0 1 1 12.8 0"/></svg>
+                  Apple Podcasts
+                </a>
+              </span>
+            </span>
+          </div>
+        </li>
+
+        <li class="row">
+          <a class="row-link" href="https://insertshirt.com/">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8.5 3.5L3 6.5l2 4 2.5-1V20h9V9.5l2.5 1 2-4-5.5-3a3.5 3.5 0 0 1-7 0z"/></svg>
+            </span>
+            <span>
+              <span class="ex">Exhibit D</span>
+              <span class="name">Insert Shirt</span>
+              <span class="desc">T-shirts for data people. One of them says Live Laugh Left Join. That is the whole pitch.</span>
+              <span class="dom">insertshirt.com</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="row">
+          <a class="row-link" href="https://cookiesworthsharon.com/">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8.5h.01"/><path d="M14.5 10h.01"/><path d="M8.5 13.5h.01"/><path d="M12.5 15.5h.01"/><path d="M16 14h.01"/></svg>
+            </span>
+            <span>
+              <span class="ex">Exhibit E</span>
+              <span class="name">Cookies Worth Sharon</span>
+              <span class="desc">A family-owned, small-batch, mail-order cookie company. Sharon spent decades perfecting the chocolate chip recipe. This is the one exhibit with no irony in it.</span>
+              <span class="dom">cookiesworthsharon.com</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <section aria-labelledby="h-appendix">
+      <div class="sec-head">
+        <h2 id="h-appendix">Appendix: where to find me</h2>
+      </div>
+      <ul class="rows compact">
+        <li class="row">
+          <a class="row-link" href="https://www.linkedin.com/in/billyost/">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 11v5.5"/><path d="M8 7.8h.01"/><path d="M12 16.5V11"/><path d="M12 13.2c0-1.4 1-2.2 2.1-2.2s1.9.8 1.9 2.2v3.3"/></svg>
+            </span>
+            <span>
+              <span class="name">LinkedIn</span>
+              <span class="desc">Where most of this gets announced, flatly.</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+        <li class="row">
+          <a class="row-link" href="https://github.com/cruce5">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8.5 7.5L4 12l4.5 4.5"/><path d="M15.5 7.5L20 12l-4.5 4.5"/><path d="M13.5 5l-3 14"/></svg>
+            </span>
+            <span>
+              <span class="name">GitHub</span>
+              <span class="desc">cruce5. The code behind Exhibits A and B.</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="h-cash">
+      <div class="sec-head">
+        <h2 id="h-cash">Petty cash</h2>
+      </div>
+      <ul class="rows compact">
+        <li class="row">
+          <a class="row-link" href="https://buymeacoffee.com/billyost">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 9h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10.5h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M9 3.5v2.5"/><path d="M13 3.5v2.5"/></svg>
+            </span>
+            <span>
+              <span class="name">Buy me a coffee</span>
+              <span class="desc">The domains renew annually. All of them.</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Filed by <a href="https://www.linkedin.com/in/billyost/"><span aria-hidden="true">🏴‍☠️ </span>Bill Yost</a>. No executive requested this page.</p>
+    <button class="toggle" type="button" data-theme-toggle><span data-theme-label>light mode</span></button>
+  </footer>
+
+</div>
+</body>
+</html>
