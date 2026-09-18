@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bill Yost</title>
-<meta name="description" content="A data nerd and a LinkedIn... something. A box office chart, a LinkedIn post roaster, a podcast, data T-shirts, and my mom's cookies.">
+<meta name="description" content="A data nerd and a LinkedIn... something. A LinkedIn post roaster, a podcast, my mom's cookies, a box office chart, and data T-shirts.">
 <link rel="canonical" href="https://billyost.com/">
 <meta name="theme-color" content="#0d0d0d">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%B4%E2%80%8D%E2%98%A0%EF%B8%8F%3C/text%3E%3C/svg%3E">
@@ -12,14 +12,14 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billyost.com/">
 <meta property="og:title" content="Bill Yost: five exhibits, one of them cookies">
-<meta property="og:description" content="A data nerd and a LinkedIn... something. A box office chart, a LinkedIn post roaster, a podcast, data T-shirts, and my mom's cookies.">
+<meta property="og:description" content="A data nerd and a LinkedIn... something. A LinkedIn post roaster, a podcast, my mom's cookies, a box office chart, and data T-shirts.">
 <meta property="og:image" content="https://billyost.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Bill Yost, with a pirate flag and his portrait, filed as a memo. Five exhibits enclosed.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Bill Yost: five exhibits, one of them cookies">
-<meta name="twitter:description" content="A data nerd and a LinkedIn... something. A box office chart, a LinkedIn post roaster, a podcast, data T-shirts, and my mom's cookies.">
+<meta name="twitter:description" content="A data nerd and a LinkedIn... something. A LinkedIn post roaster, a podcast, my mom's cookies, a box office chart, and data T-shirts.">
 <meta name="twitter:image" content="https://billyost.com/og.png">
 <meta name="twitter:image:alt" content="Bill Yost, with a pirate flag and his portrait, filed as a memo. Five exhibits enclosed.">
 
@@ -164,10 +164,6 @@ h1{
   .portrait{margin-top:40px}
   .lede{margin-top:22px}
 }
-/* On wide screens the flag hangs in the margin so "Bill Yost" lines up with everything else. */
-@media (min-width:1200px){
-  h1 .flag{position:absolute;right:100%;bottom:.24em;margin-right:.22em}
-}
 
 /* Sections */
 section{margin-top:56px}
@@ -229,7 +225,7 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
 .toggle:hover{border-color:var(--ink);color:var(--ink)}
 .toggle-sm{min-height:44px;padding:0 14px;font-size:12px}
 
-/* Desktop: The Cape Index leads full width, the other four sit two-up. */
+/* Desktop: the first exhibit leads full width, the other four sit two-up. */
 @media (min-width:860px){
   .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}
   .exhibits > .row:first-child{grid-column:1 / -1}
@@ -357,27 +353,12 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
       <ul class="rows grid exhibits">
 
         <li class="row">
-          <a class="row-link" href="https://capeindex.com/">
-            <span class="tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 20v-6"/><path d="M12 20V5"/><path d="M17 20v-9"/></svg>
-            </span>
-            <span>
-              <span class="ex">Exhibit A</span>
-              <span class="name">The Cape Index</span>
-              <span class="desc">Every Marvel and DC franchise film since 2000, box office charted in one HTML file. The plan was to check 50 numbers.</span>
-              <span class="dom">capeindex.com</span>
-            </span>
-            <span class="arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-
-        <li class="row">
           <a class="row-link" href="https://yourpost.sucks/">
             <span class="tile" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9.5 12l5 5"/><path d="M14.5 12l-5 5"/></svg>
             </span>
             <span>
-              <span class="ex">Exhibit B</span>
+              <span class="ex">Exhibit A</span>
               <span class="name">yourpost.sucks</span>
               <span class="desc">Paste a LinkedIn post. Receive an unsympathetic report. Yes, I post on LinkedIn. Yes, I know.</span>
               <span class="dom">yourpost.sucks</span>
@@ -392,8 +373,8 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
               <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/><path d="M8.5 21h7"/></svg>
             </span>
             <span>
-              <span class="ex">Exhibit C</span>
-              <span class="name">Dashboard Confessionals</span>
+              <span class="ex">Exhibit B</span>
+              <span class="name">Bill &amp; Morgan's Dashboard Confessionals</span>
               <span class="desc">Morgan Depenbusch and I interview data people about the parts of the job that never make the dashboard. We also do it live on LinkedIn. Want to be a guest? DM either of us.</span>
               <span class="btns">
                 <a class="btn" href="https://open.spotify.com/show/0CCd9BQM9yvn663gDIqDk4">
@@ -410,30 +391,45 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
         </li>
 
         <li class="row">
-          <a class="row-link" href="https://insertshirt.com/">
+          <a class="row-link" href="https://cookiesworthsharon.com/">
             <span class="tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M8.5 3.5L3 6.5l2 4 2.5-1V20h9V9.5l2.5 1 2-4-5.5-3a3.5 3.5 0 0 1-7 0z"/></svg>
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8.5h.01"/><path d="M14.5 10h.01"/><path d="M8.5 13.5h.01"/><path d="M12.5 15.5h.01"/><path d="M16 14h.01"/></svg>
             </span>
             <span>
-              <span class="ex">Exhibit D</span>
-              <span class="name">InsertShirt</span>
-              <span class="desc">T-shirts for data people. One of them says Live Laugh Left Join. That is the whole pitch.</span>
-              <span class="dom">insertshirt.com</span>
+              <span class="ex">Exhibit C</span>
+              <span class="name">Cookies Worth Sharon</span>
+              <span class="desc">My mom, Sharon, spent decades perfecting her chocolate chip cookies. She bakes and ships every order from Kersey, Pennsylvania, a town with no stoplight and more deer than people. I do the website, the accounting, the taxes, and the terrible marketing. You are looking at the marketing.</span>
+              <span class="dom">cookiesworthsharon.com</span>
             </span>
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
         </li>
 
         <li class="row">
-          <a class="row-link" href="https://cookiesworthsharon.com/">
+          <a class="row-link" href="https://capeindex.com/">
             <span class="tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 8.5h.01"/><path d="M14.5 10h.01"/><path d="M8.5 13.5h.01"/><path d="M12.5 15.5h.01"/><path d="M16 14h.01"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M7 20v-6"/><path d="M12 20V5"/><path d="M17 20v-9"/></svg>
+            </span>
+            <span>
+              <span class="ex">Exhibit D</span>
+              <span class="name">The Cape Index</span>
+              <span class="desc">Every Marvel and DC franchise film since 2000, box office charted in one HTML file. The plan was to check 50 numbers.</span>
+              <span class="dom">capeindex.com</span>
+            </span>
+            <span class="arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+
+        <li class="row">
+          <a class="row-link" href="https://insertshirt.com/">
+            <span class="tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8.5 3.5L3 6.5l2 4 2.5-1V20h9V9.5l2.5 1 2-4-5.5-3a3.5 3.5 0 0 1-7 0z"/></svg>
             </span>
             <span>
               <span class="ex">Exhibit E</span>
-              <span class="name">Cookies Worth Sharon</span>
-              <span class="desc">My mom, Sharon, spent decades perfecting her chocolate chip cookies. She bakes and ships every order from Kersey, Pennsylvania, a town with no stoplight and more deer than people. I do the website, the accounting, the taxes, and the terrible marketing. You are looking at the marketing.</span>
-              <span class="dom">cookiesworthsharon.com</span>
+              <span class="name">InsertShirt</span>
+              <span class="desc">T-shirts for data people. One of them says Live Laugh Left Join. That is the whole pitch.</span>
+              <span class="dom">insertshirt.com</span>
             </span>
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
@@ -467,7 +463,7 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
             </span>
             <span>
               <span class="name">GitHub</span>
-              <span class="desc">cruce5. The code behind Exhibits A, B, and this memo.</span>
+              <span class="desc">cruce5. The code behind Exhibits A, D, and this memo.</span>
             </span>
             <span class="arrow" aria-hidden="true">&rarr;</span>
           </a>
