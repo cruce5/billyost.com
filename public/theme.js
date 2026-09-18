@@ -1,31 +1,38 @@
 // Runs in <head> before first paint so a stored theme never flashes.
-// Dark is the default; "auto" (no stored key) follows the OS.
+// Dark is the default; with nothing stored the page follows the OS.
+// The toggle cycles dark -> light -> rainbow -> dark.
 (function () {
   var KEY = 'billyost-theme';
+  var ORDER = ['dark', 'light', 'rainbow'];
   var root = document.documentElement;
   var stored = null;
   try { stored = localStorage.getItem(KEY); } catch (e) {}
-  if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
+  if (ORDER.indexOf(stored) !== -1) root.setAttribute('data-theme', stored);
 
   function current() {
     var t = root.getAttribute('data-theme');
-    if (t) return t;
+    if (ORDER.indexOf(t) !== -1) return t;
     return window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   }
-  function sync(btn) {
-    var next = current() === 'dark' ? 'light' : 'dark';
-    btn.setAttribute('aria-label', 'Switch to ' + next + ' mode');
-    btn.querySelector('[data-theme-label]').textContent = next + ' mode';
-  }
+  function next() { return ORDER[(ORDER.indexOf(current()) + 1) % ORDER.length]; }
+
   document.addEventListener('DOMContentLoaded', function () {
-    var btn = document.querySelector('[data-theme-toggle]');
-    if (!btn) return;
-    sync(btn);
-    btn.addEventListener('click', function () {
-      var next = current() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem(KEY, next); } catch (e) {}
-      sync(btn);
-    });
+    var btns = document.querySelectorAll('[data-theme-toggle]');
+    function sync() {
+      var n = next();
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute('aria-label', 'Switch to ' + n + ' mode');
+        btns[i].querySelector('[data-theme-label]').textContent = n + ' mode';
+      }
+    }
+    sync();
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function () {
+        var n = next();
+        root.setAttribute('data-theme', n);
+        try { localStorage.setItem(KEY, n); } catch (e) {}
+        sync();
+      });
+    }
   });
 })();

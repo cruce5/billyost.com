@@ -44,7 +44,7 @@
   --hair:#2c2c2a;
   --rule:#383835;
   --rule-2:#4d4d49;
-  --accent:#e0a33a;
+  --accent:#5a9ff0;
   --focus:#5a9ff0;
   --tile:#232321;
   --display:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
@@ -64,7 +64,7 @@
     --hair:#e0ddd4;
     --rule:#d2cec3;
     --rule-2:#b8b4a8;
-    --accent:#8a5610;
+    --accent:#1f5fa8;
     --focus:#1f5fa8;
     --tile:#f1eee7;
   }
@@ -81,7 +81,7 @@
   --hair:#e0ddd4;
   --rule:#d2cec3;
   --rule-2:#b8b4a8;
-  --accent:#8a5610;
+  --accent:#1f5fa8;
   --focus:#1f5fa8;
   --tile:#f1eee7;
 }
@@ -102,8 +102,8 @@ body::before{
 :focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:4px}
 a{color:inherit}
 
-.wrap{max-width:720px;margin:0 auto;padding:40px 20px 56px}
-@media (min-width:700px){.wrap{padding:72px 24px 88px}}
+.wrap{max-width:1040px;margin:0 auto;padding:40px 20px 56px}
+@media (min-width:700px){.wrap{padding:64px 32px 80px}}
 
 .label{
   font:500 12.5px/1.4 var(--mono);
@@ -112,7 +112,7 @@ a{color:inherit}
 }
 
 /* Memo header */
-.stamp{display:flex;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.stamp{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
 .stamp .label:first-child{color:var(--ink)}
 .memo{margin:0;padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:4.5em 1fr;gap:4px 12px}
 .memo dt{font:500 12.5px/1.7 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
@@ -183,6 +183,75 @@ footer a{color:var(--ink-2);text-underline-offset:3px}
 }
 .toggle:hover{border-color:var(--ink);color:var(--ink)}
 
+.flag{font-size:.62em;margin-right:.18em;vertical-align:.12em}
+.toggle-sm{min-height:44px;padding:0 14px;font-size:12px}
+
+/* Desktop: exhibits two-up so the page is a screen and a half, not four. */
+@media (min-width:860px){
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}
+  .grid > .row:last-child:nth-child(odd){grid-column:1 / -1}
+  .pair{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);column-gap:40px}
+  .lede{max-width:40em}
+}
+
+/* Rainbow mode. It was requested. Text stays on a near-white panel so it still reads. */
+:root[data-theme="rainbow"]{
+  color-scheme:light;
+  --plane:#ff5fd2;
+  --plane-bg:linear-gradient(115deg,#ff2d95,#ff8a00,#ffe600,#35e06f,#19d3ff,#4a6bff,#b14aff,#ff2d95);
+  --surface:#fff3fd;
+  --surface-2:#fdf6ff;
+  --ink:#2a0a4a;
+  --ink-2:#3d1a63;
+  --ink-3:#5b3a80;
+  --hair:#f3b6ea;
+  --rule:#e58fe0;
+  --rule-2:#b96be0;
+  --accent:#b0127f;
+  --focus:#4a2bff;
+  --tile:#ffe9fb;
+  --display:"Comic Sans MS","Chalkboard SE","Comic Neue","IBM Plex Sans Condensed",cursive;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+}
+@keyframes vomit{to{background-position:400% 0}}
+@keyframes drift{to{background-position:240px 480px}}
+@keyframes wobble{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.2deg)}}
+[data-theme="rainbow"] body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Ctext y='28' font-size='28'%3E%F0%9F%A6%84%3C/text%3E%3C/svg%3E") 4 4,auto}
+[data-theme="rainbow"] body::before{background-size:400% 100%;animation:vomit 14s linear infinite}
+[data-theme="rainbow"] body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Ctext x='20' y='60' font-size='34'%3E%E2%9C%A8%3C/text%3E%3Ctext x='140' y='120' font-size='40'%3E%F0%9F%8C%88%3C/text%3E%3Ctext x='50' y='200' font-size='36'%3E%F0%9F%A6%84%3C/text%3E%3Ctext x='170' y='220' font-size='26'%3E%F0%9F%92%96%3C/text%3E%3C/svg%3E");
+  animation:drift 18s linear infinite;
+}
+[data-theme="rainbow"] .wrap{
+  margin-top:24px;margin-bottom:24px;border-radius:28px;
+  background:rgba(255,250,255,.93);
+  border:6px solid transparent;
+  background-image:linear-gradient(rgba(255,250,255,.93),rgba(255,250,255,.93)),var(--plane-bg);
+  background-origin:border-box;background-clip:padding-box,border-box;
+  box-shadow:0 0 0 4px #fff,0 18px 60px rgba(90,0,120,.35);
+}
+[data-theme="rainbow"] h1{
+  background:var(--plane-bg);background-size:300% 100%;animation:vomit 6s linear infinite;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-stroke:2px var(--ink);paint-order:stroke fill;
+  letter-spacing:0;line-height:1.05;font-size:clamp(44px,11vw,96px);
+}
+[data-theme="rainbow"] h1 .flag{-webkit-text-stroke:0;color:initial}
+[data-theme="rainbow"] h1::after{content:" 🦄";-webkit-text-stroke:0;color:initial;font-size:.6em}
+[data-theme="rainbow"] .stamp,[data-theme="rainbow"] footer{border-image:var(--plane-bg) 1;border-width:4px}
+[data-theme="rainbow"] .sec-head{border-bottom:3px dotted var(--rule-2)}
+[data-theme="rainbow"] .tile{border-width:2px;border-radius:50%}
+[data-theme="rainbow"] .row:nth-child(5n+1) .tile{background:#ffd1dc;border-color:#ff2d95}
+[data-theme="rainbow"] .row:nth-child(5n+2) .tile{background:#ffe2b8;border-color:#ff8a00}
+[data-theme="rainbow"] .row:nth-child(5n+3) .tile{background:#fff6a8;border-color:#c9a800}
+[data-theme="rainbow"] .row:nth-child(5n+4) .tile{background:#c9f7d6;border-color:#1fae52}
+[data-theme="rainbow"] .row:nth-child(5n+5) .tile{background:#cfe6ff;border-color:#4a6bff}
+[data-theme="rainbow"] .row-link:hover{background:var(--surface);animation:wobble .5s ease-in-out infinite}
+[data-theme="rainbow"] .btn,[data-theme="rainbow"] .toggle{border-width:2px;background:#fff}
+@media (max-width:480px){[data-theme="rainbow"] .wrap{margin:10px;border-width:4px;border-radius:20px}}
+
 @media (max-width:480px){
   .row-link,.row-static{grid-template-columns:44px minmax(0,1fr);gap:14px}
   .tile{width:44px;height:44px}
@@ -190,7 +259,7 @@ footer a{color:var(--ink-2);text-underline-offset:3px}
   .name{font-size:22px}
 }
 @media (prefers-reduced-motion: reduce){
-  *{transition:none!important}
+  *,*::before,*::after{transition:none!important;animation:none!important}
 }
 </style>
 </head>
@@ -200,14 +269,15 @@ footer a{color:var(--ink-2);text-underline-offset:3px}
   <header>
     <div class="stamp">
       <span class="label">Memorandum</span>
-      <span class="label">Distribution: unlimited</span>
+      <button class="toggle toggle-sm" type="button" data-theme-toggle><span data-theme-label>light mode</span></button>
     </div>
     <dl class="memo">
       <dt>To</dt><dd>Whoever clicked</dd>
       <dt>From</dt><dd><span aria-hidden="true">🏴‍☠️ </span>Bill Yost</dd>
       <dt>Re</dt><dd>What all of this is</dd>
+      <dt>Cc</dt><dd>Distribution unlimited</dd>
     </dl>
-    <h1>Bill Yost</h1>
+    <h1><span class="flag" aria-hidden="true">🏴‍☠️</span>Bill Yost</h1>
     <p class="lede">People analytics by day. At night I build data things nobody asked for, and then I buy them a domain.</p>
     <p class="lede">This page exists so the domains have somewhere to meet. Exhibits follow.</p>
   </header>
@@ -218,7 +288,7 @@ footer a{color:var(--ink-2);text-underline-offset:3px}
         <h2 id="h-exhibits">Exhibits</h2>
         <span class="label">5 on file</span>
       </div>
-      <ul class="rows">
+      <ul class="rows grid">
 
         <li class="row">
           <a class="row-link" href="https://capeindex.com/">
@@ -306,11 +376,12 @@ footer a{color:var(--ink-2);text-underline-offset:3px}
       </ul>
     </section>
 
+    <div class="pair">
     <section aria-labelledby="h-appendix">
       <div class="sec-head">
         <h2 id="h-appendix">Appendix: where to find me</h2>
       </div>
-      <ul class="rows compact">
+      <ul class="rows compact grid">
         <li class="row">
           <a class="row-link" href="https://www.linkedin.com/in/billyost/">
             <span class="tile" aria-hidden="true">
@@ -357,6 +428,7 @@ footer a{color:var(--ink-2);text-underline-offset:3px}
         </li>
       </ul>
     </section>
+    </div>
   </main>
 
   <footer>
