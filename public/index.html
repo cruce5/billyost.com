@@ -195,6 +195,9 @@ section{margin-top:56px}
 
 .ex{display:block;font:500 12px/1.4 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
 .name{display:block;margin-top:2px;font:600 24px/1.15 var(--display);color:var(--ink)}
+/* The podcast row holds buttons, so it can't be one big link; its name is the link instead. */
+a.name-link{text-decoration:none}
+a.name-link:hover{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
 .desc{display:block;margin-top:6px;max-width:68ch;color:var(--ink-2);font-size:16.5px;line-height:1.5}
 .dom{display:block;margin-top:8px;font:400 13.5px/1.4 var(--mono);color:var(--ink-3);overflow-wrap:anywhere}
 .arrow{align-self:center;font:400 20px/1 var(--mono);color:var(--ink-3);transition:transform .15s ease,color .15s ease}
@@ -380,9 +383,13 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
             </span>
             <span>
               <span class="ex">Exhibit B</span>
-              <span class="name">Bill &amp; Morgan's Dashboard Confessionals</span>
-              <span class="desc">Morgan Depenbusch and I interview data people about the parts of the job that never make the dashboard. We also do it live on LinkedIn. Want to be a guest? DM either of us.</span>
+              <a class="name name-link" href="https://www.linkedin.com/in/billyost/recent-activity/events/">Bill &amp; Morgan's Dashboard Confessionals</a>
+              <span class="desc">Morgan Depenbusch and I interview data people about the parts of the job that never make the dashboard. It streams on LinkedIn Live, then lands wherever you get podcasts. Want to be a guest? DM either of us.</span>
               <span class="btns">
+                <a class="btn" href="https://www.linkedin.com/in/billyost/recent-activity/events/">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M8.5 8.5a5 5 0 0 0 0 7"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M5.6 5.6a9 9 0 0 0 0 12.8"/><path d="M18.4 5.6a9 9 0 0 1 0 12.8"/></svg>
+                  LinkedIn Live
+                </a>
                 <a class="btn" href="https://open.spotify.com/show/0CCd9BQM9yvn663gDIqDk4">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 10c2.8-.8 5.6-.5 8 .8"/><path d="M8.6 13c2.2-.6 4.4-.3 6.3.7"/><path d="M9.3 15.8c1.6-.4 3.1-.2 4.4.5"/></svg>
                   Spotify
