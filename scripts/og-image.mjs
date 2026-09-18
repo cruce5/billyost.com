@@ -1,6 +1,6 @@
 // Render public/og.png (1200x630), the social-share card for billyost.com.
 // Pure SVG -> PNG via resvg; no browser. Uses whatever sans/mono the OS provides.
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Resvg } from "@resvg/resvg-js";
@@ -9,15 +9,21 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const W = 1200, H = 630;
 const SANS = "Arial, 'Helvetica Neue', Helvetica, sans-serif";
 const MONO = "Consolas, 'Courier New', monospace";
+const EMOJI = "'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji'";
+
+// The same 440px portrait the page uses, embedded so resvg needs no network or file resolver.
+const portrait = "data:image/jpeg;base64," + readFileSync(join(ROOT, "public/img/bill-yost.jpg")).toString("base64");
+const PX = 950, PY = 442, PR = 138; // portrait centre and radius
 
 const memo = [
   ["TO", "Whoever clicked"],
-  ["FROM", "Bill Yost"],
+  ["FROM", "Bill Yost", true],
   ["RE", "What all of this is"],
-].map(([k, v], i) => {
+].map(([k, v, flag], i) => {
   const y = 176 + i * 38;
   return `<text x="80" y="${y}" font-family="${MONO}" font-size="22" letter-spacing="3" fill="#918f88">${k}</text>
-  <text x="200" y="${y}" font-family="${MONO}" font-size="24" fill="#c3c2b7">${v}</text>`;
+  ${flag ? `<text x="200" y="${y}" font-family="${EMOJI}" font-size="22" fill="#c3c2b7">🏴‍☠️</text>` : ""}
+  <text x="${flag ? 242 : 200}" y="${y}" font-family="${MONO}" font-size="24" fill="#c3c2b7">${v}</text>`;
 }).join("\n  ");
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
@@ -27,8 +33,12 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   <rect x="80" y="112" width="1040" height="3" fill="#ffffff"/>
   ${memo}
   <rect x="80" y="278" width="1040" height="1" fill="#383835"/>
+  <defs><clipPath id="face"><circle cx="${PX}" cy="${PY}" r="${PR}"/></clipPath></defs>
+  <circle cx="${PX}" cy="${PY}" r="${PR + 10}" fill="#1a1a19"/>
+  <image href="${portrait}" x="${PX - PR}" y="${PY - PR}" width="${PR * 2}" height="${PR * 2}" clip-path="url(#face)" preserveAspectRatio="xMidYMid slice"/>
+  <circle cx="${PX}" cy="${PY}" r="${PR}" fill="none" stroke="#4d4d49" stroke-width="2"/>
   <text x="74" y="440" font-family="${SANS}" font-size="150" font-weight="800" fill="#ffffff" letter-spacing="-4">Bill Yost</text>
-  <text x="80" y="512" font-family="${SANS}" font-size="31" fill="#c3c2b7">Making employee data make sense. Cookie CEO.</text>
+  <text x="80" y="512" font-family="${SANS}" font-size="29" fill="#c3c2b7">Making employee data make sense. Cookie CEO.</text>
   <text x="80" y="574" font-family="${MONO}" font-size="22" letter-spacing="4" fill="#5a9ff0">EXHIBITS ENCLOSED</text>
 </svg>`;
 
