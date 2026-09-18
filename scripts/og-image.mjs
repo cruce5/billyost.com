@@ -33,7 +33,17 @@ const layer = (family, body) => {
 // Copy comes from the page, so a copy edit updates the card on the next deploy.
 const html = readFileSync(join(ROOT, "public/index.html"), "utf8");
 const lede = html.match(/<p class="lede">([^<]*)<\/p>/)[1];
-const tagline = lede.match(/^[^.]*(?:\.\.\.[^.]*)?\./)[0]; // first sentence; "..." is not a full stop
+// One sentence per line (the lede is written as short beats), wrapping any sentence longer
+// than the room left of the portrait: about 38 characters at 29px Plex Sans.
+const wrap = (text, max) => text.split(" ").reduce((lines, w) => {
+  const last = lines[lines.length - 1];
+  if (last !== undefined && (last + " " + w).length <= max) lines[lines.length - 1] = last + " " + w;
+  else lines.push(w);
+  return lines;
+}, []);
+const taglineLines = lede.match(/[^.!?]+[.!?]+/g).map((x) => x.trim()).flatMap((x) => wrap(x, 38)).slice(0, 3);
+const tagline = taglineLines.join(" ");
+const TAG_Y = 478, TAG_STEP = 38;
 const count = Number(html.match(/data-exhibit-count>(\d+) on file/)[1]);
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/'/g, "&#39;");
 
@@ -59,11 +69,11 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   ${layer(MONO, `
   <text x="80" y="88" font-family="${MONO}" font-size="22" letter-spacing="5" fill="#ffffff">MEMORANDUM</text>
   <text x="1120" y="88" text-anchor="end" font-family="${MONO}" font-size="22" letter-spacing="5" fill="#918f88">BILLYOST.COM</text>
-  <text x="80" y="566" font-family="${MONO}" font-size="24" letter-spacing="4" fill="#5a9ff0">${count} EXHIBITS ENCLOSED</text>`)}
+  <text x="80" y="${TAG_Y + taglineLines.length * TAG_STEP + 22}" font-family="${MONO}" font-size="24" letter-spacing="4" fill="#5a9ff0">${count} EXHIBITS ENCLOSED</text>`)}
   <rect x="80" y="106" width="1040" height="3" fill="#ffffff"/>
   ${flag(80, 198)}
   ${layer(COND, `<text x="74" y="420" font-family="${COND}" font-weight="700" font-size="168" letter-spacing="-2" fill="#ffffff">Bill Yost</text>`)}
-  ${layer(SANS, `<text x="80" y="486" font-family="${SANS}" font-size="31" fill="#c3c2b7">${esc(tagline)}</text>`)}
+  ${layer(SANS, taglineLines.map((l, i) => `<text x="80" y="${TAG_Y + i * TAG_STEP}" font-family="${SANS}" font-size="29" fill="#c3c2b7">${esc(l)}</text>`).join(""))}
   <defs><clipPath id="face"><circle cx="${PX}" cy="${PY}" r="${PR}"/></clipPath></defs>
   <circle cx="${PX}" cy="${PY}" r="${PR + 12}" fill="#1a1a19"/>
   <image href="${portrait}" x="${PX - PR}" y="${PY - PR}" width="${PR * 2}" height="${PR * 2}" clip-path="url(#face)" preserveAspectRatio="xMidYMid slice"/>
