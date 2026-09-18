@@ -28,7 +28,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   ${memo}
   <rect x="80" y="278" width="1040" height="1" fill="#383835"/>
   <text x="74" y="440" font-family="${SANS}" font-size="150" font-weight="800" fill="#ffffff" letter-spacing="-4">Bill Yost</text>
-  <text x="80" y="512" font-family="${SANS}" font-size="31" fill="#c3c2b7">People analytics by day. Data things nobody asked for by night.</text>
+  <text x="80" y="512" font-family="${SANS}" font-size="31" fill="#c3c2b7">I work in people analytics. Nobody asked for any of this.</text>
   <text x="80" y="574" font-family="${MONO}" font-size="22" letter-spacing="4" fill="#5a9ff0">EXHIBITS ENCLOSED</text>
 </svg>`;
 
