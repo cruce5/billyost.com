@@ -134,7 +134,16 @@ header{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;c
 .routing[open] summary::after{transform:rotate(90deg)}
 .routing summary:hover::after{color:var(--ink)}
 .memo{margin:0;padding:12px 0 14px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:4.5em 1fr;gap:2px 12px}
-header > .toggle-sm{position:absolute;top:0;right:0}
+/* Theme picker: three swatches over the right end of the Memorandum line. Each button is a
+   44px tap target around a 22px swatch; the current theme gets a ring. */
+.themes{position:absolute;top:0;right:-11px;display:flex}
+.themes button{width:44px;height:44px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:none;cursor:pointer}
+.swatch{display:block;width:22px;height:22px;border-radius:50%;border:1px solid var(--ink-3)}
+.sw-dark{background:#0d0d0d}
+.sw-light{background:#f8f5ee}
+.sw-rainbow{background:conic-gradient(#ff2d95,#ff8a00,#ffe600,#35e06f,#19d3ff,#4a6bff,#b14aff,#ff2d95)}
+.themes button:hover .swatch{border-color:var(--ink)}
+.themes button[aria-pressed="true"] .swatch{box-shadow:0 0 0 2px var(--plane),0 0 0 4px var(--ink)}
 .memo dt{font:500 12.5px/1.7 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .memo dd{margin:0;font:400 14.5px/1.6 var(--mono);color:var(--ink-2)}
 /* Phones: the name and the portrait share a row (name left, portrait right) and the bio runs
@@ -239,13 +248,7 @@ a.name-link:hover{text-decoration:underline;text-decoration-thickness:1.5px;text
 footer{margin-top:64px;padding-top:18px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between}
 footer p{margin:0;font-size:18px;color:var(--ink-2);max-width:32em}
 footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
-.toggle{
-  min-height:44px;padding:0 16px;border:1px solid var(--ink-3);border-radius:999px;
-  background:transparent;color:var(--ink-2);cursor:pointer;
-  font:500 12.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
-}
-.toggle:hover{border-color:var(--ink);color:var(--ink)}
-.toggle-sm{min-height:44px;padding:0 14px;font-size:12px}
+
 
 /* Desktop: the first exhibit leads full width, the other four sit two-up. */
 @media (min-width:860px){
@@ -328,7 +331,8 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
 [data-theme="rainbow"] .row:nth-child(5n+4) .tile{background:#c9f7d6;border-color:#1fae52}
 [data-theme="rainbow"] .row:nth-child(5n+5) .tile{background:#cfe6ff;border-color:#4a6bff}
 [data-theme="rainbow"] .row-link:hover,[data-theme="rainbow"] .row-static:hover{background:var(--surface);animation:wobble .5s ease-in-out infinite}
-[data-theme="rainbow"] .btn,[data-theme="rainbow"] .toggle{border-width:2px;background:#fff}
+[data-theme="rainbow"] .btn{border-width:2px;background:#fff}
+[data-theme="rainbow"] .themes button[aria-pressed="true"] .swatch{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ink)}
 [data-theme="rainbow"] .btn-primary{background:var(--accent);color:var(--on-accent)}
 @media (max-width:480px){[data-theme="rainbow"] .wrap{margin:10px;border-width:4px;border-radius:20px}}
 
@@ -356,7 +360,11 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
         <dt>Cc</dt><dd>Distribution unlimited</dd>
       </dl>
     </details>
-    <button class="toggle toggle-sm" type="button" data-theme-toggle><span data-theme-label>light mode</span></button>
+    <div class="themes" role="group" aria-label="Theme">
+      <button type="button" data-theme-choice="dark" aria-label="Dark mode" title="Dark"><span class="swatch sw-dark"></span></button>
+      <button type="button" data-theme-choice="light" aria-label="Light mode" title="Light"><span class="swatch sw-light"></span></button>
+      <button type="button" data-theme-choice="rainbow" aria-label="Rainbow mode" title="Rainbow"><span class="swatch sw-rainbow"></span></button>
+    </div>
     <div class="hero">
       <img class="portrait" src="/img/bill-yost.jpg" width="220" height="220" alt="Bill Yost, smiling, with long hair and a beard, in a green sweater">
       <div class="hero-text">
@@ -625,7 +633,6 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
     <div class="foot-text">
       <p>-- I'm <a href="https://www.linkedin.com/in/billyost"><span aria-hidden="true">🏴‍☠️</span>Bill</a> and no executive requested this memo.</p>
     </div>
-    <button class="toggle" type="button" data-theme-set="rainbow"><span data-theme-label>rainbow mode</span></button>
   </footer>
   <p class="sr-only" aria-live="polite" data-theme-status></p>
 
