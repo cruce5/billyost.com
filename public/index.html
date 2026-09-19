@@ -235,6 +235,7 @@ a.name-link:hover{text-decoration:underline;text-decoration-thickness:1.5px;text
 
 footer{margin-top:64px;padding-top:18px;border-top:2px solid var(--ink);display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between}
 footer p{margin:0;font-size:18px;color:var(--ink-2);max-width:32em}
+footer .coffee{margin-top:4px;font-size:16px;color:var(--ink-3)}
 footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
 .toggle{
   min-height:44px;padding:0 16px;border:1px solid var(--ink-3);border-radius:999px;
@@ -248,7 +249,6 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
 @media (min-width:860px){
   .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}
   .exhibits > .row:first-child{grid-column:1 / -1}
-  .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px}
   .lede{max-width:40em}
 }
 
@@ -588,7 +588,6 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
       </ul>
     </section>
 
-    <div class="pair">
     <section aria-labelledby="h-record">
       <div class="sec-head">
         <h2 id="h-record">Writing</h2>
@@ -609,31 +608,13 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
         </li>
       </ul>
     </section>
-
-    <section aria-labelledby="h-cash">
-      <div class="sec-head">
-        <h2 id="h-cash">Tip jar</h2>
-      </div>
-      <ul class="rows compact">
-        <li class="row">
-          <a class="row-link" href="https://buymeacoffee.com/billyost">
-            <span class="tile" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M5 9h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z"/><path d="M17 10.5h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M9 3.5v2.5"/><path d="M13 3.5v2.5"/></svg>
-            </span>
-            <span>
-              <span class="name">Buy me a coffee</span>
-              <span class="desc">The domains renew annually. All of them.</span>
-            </span>
-            <span class="arrow" aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-    </div>
   </main>
 
   <footer>
-    <p>-- I'm <a href="https://www.linkedin.com/in/billyost"><span aria-hidden="true">🏴‍☠️</span>Bill</a> and no executive requested this memo.</p>
+    <div class="foot-text">
+      <p>-- I'm <a href="https://www.linkedin.com/in/billyost"><span aria-hidden="true">🏴‍☠️</span>Bill</a> and no executive requested this memo.</p>
+      <p class="coffee"><a href="https://buymeacoffee.com/billyost">Buy me a coffee.</a> The domains renew annually. All of them.</p>
+    </div>
     <button class="toggle" type="button" data-theme-set="rainbow"><span data-theme-label>rainbow mode</span></button>
   </footer>
   <p class="sr-only" aria-live="polite" data-theme-status></p>
