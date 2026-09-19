@@ -71,8 +71,7 @@ const flag = (x, y) => `<g transform="translate(${x} ${y})">
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
   <rect width="${W}" height="${H}" fill="#0d0d0d"/>
   ${layer(MONO, `
-  <text x="80" y="88" font-family="${MONO}" font-size="22" letter-spacing="5" fill="#ffffff">MEMORANDUM</text>
-  <text x="1120" y="88" text-anchor="end" font-family="${MONO}" font-size="22" letter-spacing="5" fill="#918f88">BILLYOST.COM</text>
+  <text x="80" y="88" font-family="${MONO}" font-size="22" letter-spacing="5" fill="#ffffff">BILLYOST.COM</text>
   <text x="80" y="${TAG_Y + taglineLines.length * TAG_STEP + 22}" font-family="${MONO}" font-size="24" letter-spacing="4" fill="#5a9ff0">SIDE PROJECTS, A PODCAST, COOKIES</text>`)}
   <rect x="80" y="106" width="1040" height="3" fill="#ffffff"/>
   ${flag(80, 198)}

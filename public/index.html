@@ -118,23 +118,10 @@ a{color:inherit}
   color:var(--ink-3);
 }
 
-/* Header. "Memorandum" is the summary of a closed <details>: click it and the To/From/Re/Cc
-   rows drop open under the rule. The theme button sits over the right end of that rule line.
-   The portrait sits above the name on phones and beside it from 700px up. */
-header{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
-.routing{grid-column:1 / -1;grid-row:1}
-.routing summary{
-  /* 44px row for the theme button, then 10px and the 2px rule under it */
-  display:flex;align-items:center;gap:.5em;min-height:56px;padding-bottom:12px;
-  border-bottom:2px solid var(--ink);cursor:pointer;list-style:none;
-}
-.routing summary::-webkit-details-marker{display:none}
-.routing summary .label{color:var(--ink)}
-.routing summary::after{content:"\25B8";font:500 13px/1 var(--mono);color:var(--ink-3);transition:transform .15s ease}
-.routing[open] summary::after{transform:rotate(90deg)}
-.routing summary:hover::after{color:var(--ink)}
-.memo{margin:0;padding:12px 0 14px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:4.5em 1fr;gap:2px 12px}
-/* Theme picker: three swatches over the right end of the Memorandum line. Each button is a
+/* Header. The theme swatches sit at the top right; the name and portrait start below them.
+   The portrait sits beside the name on phones and to the right of the whole bio from 700px up. */
+header{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;padding-top:44px}
+/* Theme picker: three swatches pinned to the top right of the header. Each button is a
    44px tap target around a 22px swatch; the current theme gets a ring. */
 .themes{position:absolute;top:0;right:-11px;display:flex}
 .themes button{width:44px;height:44px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:none;cursor:pointer}
@@ -144,18 +131,16 @@ header{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;c
 .sw-rainbow{background:conic-gradient(#ff2d95,#ff8a00,#ffe600,#35e06f,#19d3ff,#4a6bff,#b14aff,#ff2d95)}
 .themes button:hover .swatch{border-color:var(--ink)}
 .themes button[aria-pressed="true"] .swatch{box-shadow:0 0 0 2px var(--plane),0 0 0 4px var(--ink)}
-.memo dt{font:500 12.5px/1.7 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
-.memo dd{margin:0;font:400 14.5px/1.6 var(--mono);color:var(--ink-2)}
 /* Phones: the name and the portrait share a row (name left, portrait right) and the bio runs
    full width underneath. .hero-text dissolves so its children can sit in the header grid. */
 .hero{display:contents}
 .hero-text{display:contents}
 .portrait{
-  grid-column:2;grid-row:2;align-self:center;margin-top:20px;
+  grid-column:2;grid-row:1;align-self:center;margin-top:20px;
   display:block;width:64px;height:64px;border-radius:50%;object-fit:cover;
   border:1px solid var(--rule-2);box-shadow:0 0 0 4px var(--surface);
 }
-.hero-text > h1{grid-column:1;grid-row:2;align-self:center;margin-top:20px}
+.hero-text > h1{grid-column:1;grid-row:1;align-self:center;margin-top:20px}
 .hero-text > .lede,.hero-text > .cta{grid-column:1 / -1}
 
 h1{
@@ -175,7 +160,6 @@ h1{
 
 /* Phones: some type size goes, so the first exhibit makes the first screen. */
 @media (max-width:699px){
-  .memo dd{font-size:13.5px}
   /* the name shares its row with the portrait, so it scales to fit one line down to 320px */
   h1{font-size:clamp(34px,11.8vw,56px)}
   [data-theme="rainbow"] h1{font-size:clamp(28px,9.5vw,48px)}
@@ -186,10 +170,10 @@ h1{
 }
 @media (min-width:700px){
   header{column-gap:40px}
-  .portrait{grid-column:2;grid-row:2;width:220px;height:220px;box-shadow:0 0 0 7px var(--surface)}
-  .hero-text{display:block;grid-column:1;grid-row:2;align-self:center;padding-top:40px}
+  .portrait{grid-column:2;grid-row:1;width:220px;height:220px;box-shadow:0 0 0 7px var(--surface)}
+  .hero-text{display:block;grid-column:1;grid-row:1;align-self:center;padding-top:16px}
   .hero-text > h1{margin-top:0}
-  .portrait{margin-top:40px}
+  .portrait{margin-top:16px}
   .lede{margin-top:22px}
 }
 
@@ -322,7 +306,7 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
   background:conic-gradient(#ff2d95,#ff8a00,#ffe600,#35e06f,#19d3ff,#4a6bff,#b14aff,#ff2d95) border-box;
   animation:wobble 2.4s ease-in-out infinite;
 }
-[data-theme="rainbow"] .routing summary,[data-theme="rainbow"] footer{border-image:var(--plane-bg) 1;border-width:4px}
+[data-theme="rainbow"] footer{border-image:var(--plane-bg) 1;border-width:4px}
 [data-theme="rainbow"] .sec-head{border-bottom:3px dotted var(--rule-2)}
 [data-theme="rainbow"] .tile{border-width:2px;border-radius:50%}
 [data-theme="rainbow"] .row:nth-child(5n+1) .tile{background:#ffd1dc;border-color:#ff2d95}
@@ -351,15 +335,6 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
 <div class="wrap">
 
   <header>
-    <details class="routing">
-      <summary><span class="label">Memorandum</span></summary>
-      <dl class="memo">
-        <dt>To</dt><dd>Whoever clicked</dd>
-        <dt>From</dt><dd>Bill Yost</dd>
-        <dt>Re</dt><dd>Side projects, a podcast, and my mom's cookies</dd>
-        <dt>Cc</dt><dd>Distribution unlimited</dd>
-      </dl>
-    </details>
     <div class="themes" role="group" aria-label="Theme">
       <button type="button" data-theme-choice="dark" aria-label="Dark mode" title="Dark"><span class="swatch sw-dark"></span></button>
       <button type="button" data-theme-choice="light" aria-label="Light mode" title="Light"><span class="swatch sw-light"></span></button>
@@ -631,7 +606,7 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
 
   <footer>
     <div class="foot-text">
-      <p>-- I'm <a href="https://www.linkedin.com/in/billyost"><span aria-hidden="true">🏴‍☠️</span>Bill</a> and no executive requested this memo.</p>
+      <p>-- I'm <a href="https://www.linkedin.com/in/billyost"><span aria-hidden="true">🏴‍☠️</span>Bill</a> and no executive requested this page.</p>
     </div>
   </footer>
   <p class="sr-only" aria-live="polite" data-theme-status></p>
