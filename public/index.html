@@ -160,6 +160,9 @@ h1{
 .lede{margin:18px 0 0;max-width:34em;font-size:19px;line-height:1.5;color:var(--ink-2)}
 .lede + .lede{margin-top:10px;color:var(--ink-3);font-size:17px}
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+/* morph.ing: a quiet link, dotted so it reads as a small aside rather than a call to action */
+.lede a.egg{color:inherit;text-decoration:underline dotted;text-underline-offset:4px}
+.lede a.egg:hover{color:var(--ink);text-decoration-style:solid}
 
 /* Phones: some type size goes, so the first exhibit makes the first screen. */
 @media (max-width:699px){
@@ -354,7 +357,7 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
       <div class="hero-text">
         <h1><span class="flag" aria-hidden="true">🏴‍☠️</span>Bill Yost</h1>
         <p class="lede">Day job: people analytics. Night job: dad. After bedtime I build data things nobody asked for, then buy them domains.</p>
-        <p class="lede">Two-time cancer survivor. Zero-time Power Ranger. Still bitter about one of those. The cookies are my mom's. People do ask for those.</p>
+        <p class="lede">Two-time cancer survivor. Zero-time <a class="egg" href="https://morph.ing">Power Ranger</a>. Still bitter about one of those. The cookies are my mom's. People do ask for those.</p>
         <div class="cta">
           <a class="btn btn-primary" href="https://www.linkedin.com/in/billyost">Follow on LinkedIn</a>
           <a class="btn" href="https://buymeacoffee.com/billyost">
