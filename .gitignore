@@ -2,3 +2,4 @@ node_modules/
 .wrangler/
 assets-src/
 .reconcilers/
+drafts/

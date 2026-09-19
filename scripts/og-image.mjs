@@ -41,7 +41,12 @@ const wrap = (text, max) => text.split(" ").reduce((lines, w) => {
   else lines.push(w);
   return lines;
 }, []);
-const taglineLines = lede.match(/[^.!?]+[.!?]+/g).map((x) => x.trim()).flatMap((x) => wrap(x, 38)).slice(0, 3);
+const taglineLines = [];
+for (const sentence of lede.match(/[^.!?]+[.!?]+/g).map((x) => x.trim())) {
+  const lines = wrap(sentence, 38);
+  if (taglineLines.length + lines.length > 3) break;
+  taglineLines.push(...lines);
+}
 const tagline = taglineLines.join(" ");
 const TAG_Y = 478, TAG_STEP = 38;
 const count = Number(html.match(/data-exhibit-count>(\d+) on file/)[1]);
