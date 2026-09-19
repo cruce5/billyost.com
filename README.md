@@ -12,7 +12,7 @@ Bill Yost's landing page. One hand-written HTML file, self-hosted IBM Plex, no f
 
 ## Commands
 
-    npm run check     # exhibit count and letters, one shared description, no em dashes, https links
+    npm run check     # every side project labeled, one shared description, no em dashes, https links
     npm run og        # re-render the share card
     npm run csp       # hash every inline <style> into the CSP in _headers
     npm run build     # check + og + csp
@@ -21,9 +21,9 @@ Bill Yost's landing page. One hand-written HTML file, self-hosted IBM Plex, no f
 
 After changing the share card, paste https://billyost.com into linkedin.com/post-inspector so LinkedIn drops its cached preview.
 
-## Adding an exhibit
+## Adding a side project
 
-Copy a `<li class="row">` block in `public/index.html`, bump the exhibit letter, and update the "N on file" count in the section header. `npm run check` fails the deploy if the count or letters are off. The first exhibit runs full width on desktop; the rest sit two-up, so an even number of the others looks best.
+Copy a `<li class="row">` block in the Side projects list in `public/index.html` and give it a type label (`<span class="ex">Podcast</span>` and so on). `npm run check` fails the deploy if a project is missing its label. The first project runs full width on desktop; the rest sit two-up, so an even number of the others looks best.
 
 ## House rules
 

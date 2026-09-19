@@ -1,7 +1,7 @@
 // Render public/og.png (1200x630), the social-share card for billyost.com.
 // Pure SVG -> PNG via resvg; no browser. Type is the site's own IBM Plex, decompressed from the
 // woff2 files in public/fonts (resvg reads TTF, not woff2). The flag is drawn, because resvg
-// cannot render color emoji. The tagline and exhibit count are read from index.html so the
+// cannot render color emoji. The tagline is read from index.html so the
 // card cannot drift from the page.
 import { readFileSync, writeFileSync, mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -49,7 +49,6 @@ for (const sentence of lede.match(/[^.!?]+[.!?]+/g).map((x) => x.trim())) {
 }
 const tagline = taglineLines.join(" ");
 const TAG_Y = 478, TAG_STEP = 38;
-const count = Number(html.match(/data-exhibit-count>(\d+) on file/)[1]);
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/'/g, "&#39;");
 
 // The same 440px portrait the page uses, embedded so resvg needs no file resolver.
@@ -74,7 +73,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   ${layer(MONO, `
   <text x="80" y="88" font-family="${MONO}" font-size="22" letter-spacing="5" fill="#ffffff">MEMORANDUM</text>
   <text x="1120" y="88" text-anchor="end" font-family="${MONO}" font-size="22" letter-spacing="5" fill="#918f88">BILLYOST.COM</text>
-  <text x="80" y="${TAG_Y + taglineLines.length * TAG_STEP + 22}" font-family="${MONO}" font-size="24" letter-spacing="4" fill="#5a9ff0">${count} EXHIBITS ENCLOSED</text>`)}
+  <text x="80" y="${TAG_Y + taglineLines.length * TAG_STEP + 22}" font-family="${MONO}" font-size="24" letter-spacing="4" fill="#5a9ff0">SIDE PROJECTS, A PODCAST, COOKIES</text>`)}
   <rect x="80" y="106" width="1040" height="3" fill="#ffffff"/>
   ${flag(80, 198)}
   ${layer(COND, `<text x="74" y="420" font-family="${COND}" font-weight="700" font-size="168" letter-spacing="-2" fill="#ffffff">Bill Yost</text>`)}

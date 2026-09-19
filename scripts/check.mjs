@@ -8,12 +8,12 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const html = readFileSync(join(ROOT, "public/index.html"), "utf8");
 const problems = [];
 
-// 1. "N on file" matches the number of exhibits, and the letters run A, B, C... in order.
+// 1. Every side project has a type label ("Podcast", "Data viz"...).
 const exhibits = html.slice(html.indexOf('class="rows grid exhibits"'), html.indexOf("</ul>", html.indexOf('class="rows grid exhibits"')));
-const letters = [...exhibits.matchAll(/class="ex">Exhibit ([A-Z])</g)].map((m) => m[1]);
-const stated = Number((html.match(/data-exhibit-count>(\d+) on file/) || [])[1]);
-if (letters.length !== stated) problems.push(`"${stated} on file" but ${letters.length} exhibits`);
-letters.forEach((l, i) => { if (l !== String.fromCharCode(65 + i)) problems.push(`exhibit ${i + 1} is lettered ${l}`); });
+const rows = (exhibits.match(/<li class="row">/g) || []).length;
+const letters = [...exhibits.matchAll(/class="ex">([^<]+)</g)].map((m) => m[1]);
+if (!rows) problems.push("no side projects found");
+if (letters.length !== rows) problems.push(`${rows} side projects but ${letters.length} type labels`);
 
 // 2. The three share descriptions are one string, and the two titles match.
 const meta = (sel) => (html.match(new RegExp(`${sel}" content="([^"]*)"`)) || [])[1];
@@ -35,4 +35,4 @@ if (problems.length) {
   console.error("check failed:\n  " + problems.join("\n  "));
   process.exit(1);
 }
-console.log(`check ok: ${letters.length} exhibits (${letters.join("")}), descriptions agree, no em dashes, links https`);
+console.log(`check ok: ${rows} side projects (${letters.join(", ")}), descriptions agree, no em dashes, links https`);
