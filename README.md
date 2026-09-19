@@ -8,7 +8,7 @@ Bill Yost's landing page. One hand-written HTML file, self-hosted IBM Plex, no f
 - `public/theme.js` sets the stored theme before first paint, wires the two theme buttons (the header one cycles dark, light, rainbow; the footer one jumps to rainbow and back), announces the change to screen readers, and pauses animations while the tab is hidden. It is external so the CSP can stay `script-src 'self'`.
 - `public/_headers` carries the CSP, HSTS and cache rules. The CSP line is rewritten on every build (see below); do not hand-edit it.
 - `src/worker.js` runs in front of the assets and 301s plain http and www.billyost.com to https://billyost.com.
-- `scripts/og-image.mjs` renders `public/og.png` with resvg in the site's own Plex (decompressed from the woff2 files). The tagline and exhibit count are read from `index.html`, so the card cannot drift from the page.
+- `scripts/og-image.mjs` renders `public/og.png` with resvg in the site's own Plex (decompressed from the woff2 files). The tagline is read from `index.html`, so the card cannot drift from the page.
 
 ## Commands
 
