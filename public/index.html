@@ -118,27 +118,32 @@ a{color:inherit}
   color:var(--ink-3);
 }
 
-/* Header. The To/From/Re/Cc rows are an easter egg in a closed <details>; the portrait sits
-   above the name on phones and beside it from 700px up. */
-header{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
-.stamp{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:10px;border-bottom:2px solid var(--ink)}
-.stamp .label:first-child{color:var(--ink)}
-.routing{grid-column:1 / -1;grid-row:2;border-bottom:1px solid var(--rule)}
-.routing summary{display:flex;align-items:center;gap:.6em;min-height:44px;cursor:pointer;list-style:none;width:max-content}
+/* Header. "Memorandum" is the summary of a closed <details>: click it and the To/From/Re/Cc
+   rows drop open under the rule. The theme button sits over the right end of that rule line.
+   The portrait sits above the name on phones and beside it from 700px up. */
+header{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
+.routing{grid-column:1 / -1;grid-row:1}
+.routing summary{
+  /* 44px row for the theme button, then 10px and the 2px rule under it */
+  display:flex;align-items:center;gap:.5em;min-height:56px;padding-bottom:12px;
+  border-bottom:2px solid var(--ink);cursor:pointer;list-style:none;
+}
 .routing summary::-webkit-details-marker{display:none}
-.routing summary::before{content:"\25B8";font-size:1.1em;transition:transform .15s ease}
-.routing[open] summary::before{transform:rotate(90deg)}
-.routing summary:hover{color:var(--ink-2)}
-.memo{margin:0;padding:0 0 14px;display:grid;grid-template-columns:4.5em 1fr;gap:2px 12px}
+.routing summary .label{color:var(--ink)}
+.routing summary::after{content:"\25B8";font:500 13px/1 var(--mono);color:var(--ink-3);transition:transform .15s ease}
+.routing[open] summary::after{transform:rotate(90deg)}
+.routing summary:hover::after{color:var(--ink)}
+.memo{margin:0;padding:12px 0 14px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:4.5em 1fr;gap:2px 12px}
+header > .toggle-sm{position:absolute;top:0;right:0}
 .memo dt{font:500 12.5px/1.7 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .memo dd{margin:0;font:400 14.5px/1.6 var(--mono);color:var(--ink-2)}
 .hero{display:contents}
 .portrait{
-  grid-column:1;grid-row:3;margin-top:20px;
+  grid-column:1;grid-row:2;margin-top:20px;
   display:block;width:72px;height:72px;border-radius:50%;object-fit:cover;
   border:1px solid var(--rule-2);box-shadow:0 0 0 4px var(--surface);
 }
-.hero-text{grid-column:1 / -1;grid-row:4;padding-top:14px}
+.hero-text{grid-column:1 / -1;grid-row:3;padding-top:14px}
 
 h1{
   position:relative;margin:0;
@@ -162,8 +167,8 @@ h1{
 }
 @media (min-width:700px){
   header{column-gap:40px}
-  .portrait{grid-column:2;grid-row:3;width:220px;height:220px;box-shadow:0 0 0 7px var(--surface)}
-  .hero-text{grid-column:1;grid-row:3;align-self:center;padding-top:40px}
+  .portrait{grid-column:2;grid-row:2;width:220px;height:220px;box-shadow:0 0 0 7px var(--surface)}
+  .hero-text{grid-column:1;grid-row:2;align-self:center;padding-top:40px}
   .portrait{margin-top:40px}
   .lede{margin-top:22px}
 }
@@ -299,7 +304,7 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
   background:conic-gradient(#ff2d95,#ff8a00,#ffe600,#35e06f,#19d3ff,#4a6bff,#b14aff,#ff2d95) border-box;
   animation:wobble 2.4s ease-in-out infinite;
 }
-[data-theme="rainbow"] .stamp,[data-theme="rainbow"] footer{border-image:var(--plane-bg) 1;border-width:4px}
+[data-theme="rainbow"] .routing summary,[data-theme="rainbow"] footer{border-image:var(--plane-bg) 1;border-width:4px}
 [data-theme="rainbow"] .sec-head{border-bottom:3px dotted var(--rule-2)}
 [data-theme="rainbow"] .tile{border-width:2px;border-radius:50%}
 [data-theme="rainbow"] .row:nth-child(5n+1) .tile{background:#ffd1dc;border-color:#ff2d95}
@@ -327,12 +332,8 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
 <div class="wrap">
 
   <header>
-    <div class="stamp">
-      <span class="label">Memorandum</span>
-      <button class="toggle toggle-sm" type="button" data-theme-toggle><span data-theme-label>light mode</span></button>
-    </div>
     <details class="routing">
-      <summary class="label">Routing slip</summary>
+      <summary><span class="label">Memorandum</span></summary>
       <dl class="memo">
         <dt>To</dt><dd>Whoever clicked</dd>
         <dt>From</dt><dd>Bill Yost</dd>
@@ -340,6 +341,7 @@ footer a{color:var(--ink);text-underline-offset:3px;padding:12px 0}
         <dt>Cc</dt><dd>Distribution unlimited</dd>
       </dl>
     </details>
+    <button class="toggle toggle-sm" type="button" data-theme-toggle><span data-theme-label>light mode</span></button>
     <div class="hero">
       <img class="portrait" src="/img/bill-yost.jpg" width="220" height="220" alt="Bill Yost, smiling, with long hair and a beard, in a green sweater">
       <div class="hero-text">
